@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     login:false,
     register:false,
-    recoveringPassword:false
+    recoveringPassword:false,
+    path:''
 }
 
 export const introductionSlice = createSlice({
@@ -18,6 +19,9 @@ export const introductionSlice = createSlice({
         },
         openRecoveringPassword:(state) => {
             state.recoveringPassword = !state.recoveringPassword
+        },
+        setPath:(state,action)=> {
+            state.path = action.payload;
         }
     }
 })

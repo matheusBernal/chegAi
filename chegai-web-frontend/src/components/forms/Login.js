@@ -2,12 +2,15 @@ import { Dialog, DialogTitle, DialogContent, Grid, TextField, Button, Divider } 
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { openLogin,openRegister, openRecoveringPassword } from '../../reducer/introductionReducer';
+import { useNavigate  } from 'react-router-dom';
 
 
 export default function Login() {
   
   const login = useSelector((state) => state.introduction.login);
   const dispatch = useDispatch()
+
+  const navigate = useNavigate()
 
   const handleOpenLogin = ()=>{
     dispatch(openLogin())
@@ -93,6 +96,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ backgroundColor: "#6DD99C", fontSize: "14px", color: 'white', borderRadius: '20px' }}
+              onClick={()=>navigate('/homepage')}
             >
               Avançar
             </Button>
