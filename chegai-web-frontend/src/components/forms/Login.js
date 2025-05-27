@@ -96,7 +96,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ backgroundColor: "#6DD99C", fontSize: "14px", color: 'white', borderRadius: '20px' }}
-              onClick={()=>navigate('/homepage')}
+              onClick={()=>navigate('/home')}
             >
               Avançar
             </Button>

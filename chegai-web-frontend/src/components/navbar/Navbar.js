@@ -7,17 +7,21 @@ import { Search, FavoriteBorder, ShoppingCart, Person } from '@mui/icons-materia
 import { useDispatch, useSelector } from 'react-redux';
 import { navbar } from '../../constants/Navabar';
 import { setPath } from '../../reducer/homepageReducer';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Navbar() {
   const dispatch = useDispatch();
 
-  // Pegando o path atual do Redux
+  const navigate = useNavigate();
   const selected = useSelector((state) => state.homepage.path);
 
   const handlePath = (value) => {
     dispatch(setPath(value));
-    console.log(`Navegando para: ${value}`);
+    navigate(`/${value}`); // Agora está redirecionando de fato
   };
+
+
 
   return (
     <AppBar position="static" color="inherit" elevation={0} sx={{ borderBottom: '1px solid #ccc' }}>

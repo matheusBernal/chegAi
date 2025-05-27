@@ -17,7 +17,7 @@ export default function SideMenu () {
   const menuItems = isHome ? home : isProducts ? products : isCommunity ? community : isBlog ? blog : [];
 
   return (
-    <Box position='static' sx={{ width: 200, borderRight: '5px solid #cc', pt: 2 }}>
+    <Box position='static' sx={{ width: 200, borderRight: '1px solid #ccc', pt: 2 }}>
       <List>
         {menuItems.map((item) => (
           item === "Woman’s Fashion" || item === "Men’s Fashion"|| item === "Filtro" ? (
