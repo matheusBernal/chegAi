@@ -25,7 +25,7 @@ export default function Introduction() {
         <Box
             sx={{
                 minHeight: "100vh",
-                backgroundColor: "#6DD99C",
+                backgroundColor: "#B74F4F",
                 color: "white",
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" }

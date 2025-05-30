@@ -9,7 +9,7 @@ import { products } from '../../constants/Products';
 
 
 export default function SideMenu () {
-  const currentPath = useSelector((state) => state.homepage.path);
+  const currentPath = useSelector((state) => state.homelayout.path);
   const isHome = currentPath === 'home';
   const isProducts = currentPath === 'products';
   const isCommunity = currentPath === 'community';

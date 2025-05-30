@@ -6,7 +6,7 @@ import {
 import { Search, FavoriteBorder, ShoppingCart, Person } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { navbar } from '../../constants/Navabar';
-import { setPath } from '../../reducer/homepageReducer';
+import { setPath } from '../../reducer/homelayoutReducer';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,7 +14,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const selected = useSelector((state) => state.homepage.path);
+  const selected = useSelector((state)=>state.homelayout.path);
 
   const handlePath = (value) => {
     dispatch(setPath(value));
