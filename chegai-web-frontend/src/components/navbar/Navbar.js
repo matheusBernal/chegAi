@@ -28,7 +28,7 @@ export default function Navbar() {
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ flex: 1 }}>
           <Typography variant="h4" fontWeight="bold">
-            ChegAí
+            Zolei
           </Typography>
         </Box>
         <Box sx={{ flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>

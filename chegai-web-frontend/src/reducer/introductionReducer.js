@@ -1,27 +1,58 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    login:false,
-    register:false,
-    recoveringPassword:false,
-}
+// 🔁 Recupera do localStorage se existir (senão usa valores padrão)
+const persistedState = JSON.parse(localStorage.getItem("introState"));
+
+const initialState = persistedState || {
+    login: false,
+    register: false,
+    recoveringPassword: false,
+};
 
 export const introductionSlice = createSlice({
-    name:'introduction',
+    name: 'introduction',
     initialState,
-    reducers:{
+    reducers: {
         openLogin: (state) => {
-            state.login = !state.login;//Aqui eu quero mudar o valor do login de false para true e vice-versa
+            state.login = true;
+            state.register = false;
+            state.recoveringPassword = false;
+        },
+        closeLogin: (state) => {
+            state.login = false;
         },
         openRegister: (state) => {
-            state.register = !state.register;//Aqui eu quero mudar o valor de register de false para true e vice-versa
+            state.register = true;
+            state.login = false;
+            state.recoveringPassword = false;
         },
-        openRecoveringPassword:(state) => {
-            state.recoveringPassword = !state.recoveringPassword
+        closeRegister: (state) => {
+            state.register = false;
+        },
+        openRecoveringPassword: (state) => {
+            state.recoveringPassword = true;
+            state.login = false;
+            state.register = false;
+        },
+        closeRecoveringPassword: (state) => {
+            state.recoveringPassword = false;
         }
     }
-})
+});
 
-export const {openLogin,openRegister,openRecoveringPassword} = introductionSlice.actions;
+// 🔐 Salva automaticamente no localStorage sempre que muda
+const saveToLocalStorage = (storeAPI) => (next) => (action) => {
+    const result = next(action);
+    const stateToPersist = storeAPI.getState().introduction;
+    localStorage.setItem("introState", JSON.stringify(stateToPersist));
+    return result;
+};
 
-export default introductionSlice.reducer;
+export const {
+    openLogin, closeLogin,
+    openRegister, closeRegister,
+    openRecoveringPassword, closeRecoveringPassword
+} = introductionSlice.actions;
+
+export const introductionReducer = introductionSlice.reducer;
+export const introductionMiddleware = saveToLocalStorage;

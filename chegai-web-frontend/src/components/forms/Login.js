@@ -1,30 +1,27 @@
+import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Grid, TextField, Button, Divider } from '@mui/material';
-import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { openLogin,openRegister, openRecoveringPassword } from '../../reducer/introductionReducer';
-import { useNavigate  } from 'react-router-dom';
-
+import { openRegister, openRecoveringPassword, closeLogin } from '../../reducer/introductionReducer';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  
   const login = useSelector((state) => state.introduction.login);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const handleOpenLogin = ()=>{
-    dispatch(openLogin())
-  }
+  const handleCloseLogin = () => {
+    dispatch(closeLogin());
+  };
 
   const handleOpenRegister = () => {
-    dispatch(openLogin())
-    dispatch(openRegister())
-  }
+    dispatch(closeLogin());
+    dispatch(openRegister());
+  };
 
-  const handleOpenRegistercovering = ()=>{
-    dispatch(openRecoveringPassword())
-    dispatch(openLogin())
-  }
+  const handleOpenRecoveringPassword = () => {
+    dispatch(closeLogin());
+    dispatch(openRecoveringPassword());
+  };
 
   return (
     <Dialog
@@ -35,10 +32,10 @@ export default function Login() {
       sx={{
         '& .MuiDialog-paper': { borderRadius: '20px', padding: 2 }
       }}
-      onClose={handleOpenLogin}
+      onClose={handleCloseLogin}
     >
       <DialogTitle align='center' fontSize='28px' fullWidth sx={{ color: '#6DD99C' }}>
-        Seja Bem-Vindo! Entra e ChegAí
+        Seja Bem-Vindo! Entra e Zolei
       </DialogTitle>
 
       <br />
@@ -96,7 +93,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ backgroundColor: "#6DD99C", fontSize: "14px", color: 'white', borderRadius: '20px' }}
-              onClick={()=>navigate('/home')}
+              onClick={() => navigate('/home')}
             >
               Avançar
             </Button>
@@ -107,17 +104,17 @@ export default function Login() {
               fullWidth
               variant="text"
               sx={{ fontSize: "14px", color: '#6DD99C', borderRadius: '20px' }}
-              onClick={handleOpenRegistercovering}
+              onClick={handleOpenRecoveringPassword}
             >
               Esqueceu sua senha?
             </Button>
           </Grid>
 
           <Grid item>
-              <Button
+            <Button
               fullWidth
               variant="text"
-              sx={{fontSize: "13px",color: '#6DD99C', borderRadius: '20px' }}
+              sx={{ fontSize: "13px", color: '#6DD99C', borderRadius: '20px' }}
               onClick={handleOpenRegister}
             >
               Inscrever-se
@@ -126,5 +123,5 @@ export default function Login() {
         </Grid>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
